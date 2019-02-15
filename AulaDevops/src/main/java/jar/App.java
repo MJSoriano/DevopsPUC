@@ -16,7 +16,7 @@ public class App {
         Random r = new Random();
 
         List<Integer> pesos = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-        List<String> valores = Arrays.asList("2", "3", "4", "5", "6", "7", "8", "9", "10", "Valete", "Dama", "Rei", "Ás");
+        List<String> valores = Arrays.asList("2", "3", "4", "5", "6", "7", "8", "9", "10", "Valete", "Dama", "Rei", "As");
         List<String> naipes = Arrays.asList("D", "H", "S", "C");
         List<Carta> mao1 = new ArrayList<Carta>();
         List<Carta> mao2 = new ArrayList<Carta>();
@@ -54,12 +54,22 @@ public class App {
         for (Carta c : mao2) {
             System.out.println(c);
         }
+
+        /* List<Carta> maoTeste = new ArrayList<Carta>();
+        maoTeste.add(new Carta(1,"3","H"));
+        maoTeste.add(new Carta(2,"4","H"));
+        maoTeste.add(new Carta(9,"Valete","H"));
+        maoTeste.add(new Carta(10,"Dama","S"));
+        maoTeste.add(new Carta(11,"Rei","H"));
+
+        System.out.println("--------------------- Verifica Straight Flush Mao Teste  ---------------------");
+        System.out.println(verificaStraightFlush(maoTeste)); */
         
         System.out.println("--------------------- Verifica Straight Flush Mao 1  ---------------------");
         System.out.println(verificaStraightFlush(mao1));
 
         System.out.println("--------------------- Verifica Straight Flush Mao 2  ---------------------");
-        System.out.println(verificaStraightFlush(mao1));
+        System.out.println(verificaStraightFlush(mao2));
 
     }
 
@@ -75,7 +85,7 @@ public class App {
     // Verifica se ocorreu um Straight Flush
     public static Boolean verificaStraightFlush(List<Carta> mao) {
         for (int i = 0; i < mao.size() - 1; i++) {
-            if ((mao.get(i + 1).getValor() != mao.get(i).getValor() + 1) && !mao.get(i + 1).getNaipe().equals(mao.get(i).getNaipe())) {
+            if ((mao.get(i + 1).getPeso() != mao.get(i).getPeso() + 1) || !mao.get(i + 1).getNaipe().equals(mao.get(i).getNaipe())) {
                 return false;
             }
         }

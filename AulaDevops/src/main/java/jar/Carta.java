@@ -14,7 +14,7 @@ public class Carta {
     public void setValor(String valor) {
         this.valor = valor;
     }
-    
+
     public String getValor() {
         return this.valor;
     }
@@ -33,6 +33,12 @@ public class Carta {
 
     public Integer getPeso() {
         return this.peso;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + " peso='" + getPeso() + "'" + ", valor='" + getValor() + "'" + ", naipe='" + getNaipe() + "'"
+                + "}";
     }
 
 }

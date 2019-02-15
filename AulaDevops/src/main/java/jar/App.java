@@ -44,33 +44,45 @@ public class App {
         ordenarMao(mao2);
 
         System.out.println("--------------------- Mao 1 ---------------------");
-
         for (Carta c : mao1) {
             System.out.println(c);
         }
 
         System.out.println("--------------------- Mao 2 ---------------------");
-
         for (Carta c : mao2) {
             System.out.println(c);
         }
 
-        /* List<Carta> maoTeste = new ArrayList<Carta>();
-        maoTeste.add(new Carta(1,"3","H"));
-        maoTeste.add(new Carta(2,"4","H"));
-        maoTeste.add(new Carta(9,"Valete","H"));
-        maoTeste.add(new Carta(10,"Dama","S"));
-        maoTeste.add(new Carta(11,"Rei","H"));
+        imprimeMaoTeste();
 
-        System.out.println("--------------------- Verifica Straight Flush Mao Teste  ---------------------");
-        System.out.println(verificaStraightFlush(maoTeste)); */
-        
         System.out.println("--------------------- Verifica Straight Flush Mao 1  ---------------------");
         System.out.println(verificaStraightFlush(mao1));
 
         System.out.println("--------------------- Verifica Straight Flush Mao 2  ---------------------");
         System.out.println(verificaStraightFlush(mao2));
 
+    }
+
+    public static void imprimeMaoTeste() {
+        List<Carta> maoTeste = new ArrayList<Carta>();
+        maoTeste.add(new Carta(8,"10","H"));
+        maoTeste.add(new Carta(9,"Vale","H"));
+        maoTeste.add(new Carta(10,"Data","H"));
+        maoTeste.add(new Carta(11,"Rei","H"));
+        maoTeste.add(new Carta(12,"As","H"));
+
+        ordenarMao(maoTeste);
+
+        System.out.println("--------------------- Mao Teste ---------------------");
+        for (Carta c : maoTeste) {
+            System.out.println(c);
+        }
+
+        /* System.out.println("--------------------- Verifica Straight Flush Mao Teste  ---------------------");
+        System.out.println(verificaStraightFlush(maoTeste)); */
+
+        System.out.println("--------------------- Verifica Royal Flush Mao Teste  ---------------------");
+        System.out.println(verificaRoyalFlush(maoTeste));
     }
 
     // Ordena a Mao do jogador pelo Peso da carta
@@ -82,14 +94,27 @@ public class App {
         });
     }
 
-    // Verifica se ocorreu um Straight Flush
-    public static Boolean verificaStraightFlush(List<Carta> mao) {
+    // Verifica se na mao existe uma sequencia e se os naipes são iguais
+    public static Boolean verificaSequenciaENaipe(List<Carta> mao) {
         for (int i = 0; i < mao.size() - 1; i++) {
             if ((mao.get(i + 1).getPeso() != mao.get(i).getPeso() + 1) || !mao.get(i + 1).getNaipe().equals(mao.get(i).getNaipe())) {
                 return false;
             }
         }
         return true;
+    }
+
+    // Verifica se ocorreu um Straight Flush
+    public static Boolean verificaStraightFlush(List<Carta> mao) {
+        return verificaSequenciaENaipe(mao);
+    }
+
+    // Verifica se ocorreu um Royal Flush
+    public static Boolean verificaRoyalFlush(List<Carta> mao) {
+        if (mao.get(0).getPeso() == 8) {
+            return verificaSequenciaENaipe(mao);
+        }
+        return false;
     }
 
 }

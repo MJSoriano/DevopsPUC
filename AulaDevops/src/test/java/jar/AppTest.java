@@ -121,4 +121,18 @@ public class AppTest
         boolean resultado = App.verificaRoyalFlush(maoTeste);
 		Assert.assertTrue("SIM: ", resultado);            
     }
+
+    @Test
+    public void Quebrar() {
+        
+        List<Carta> maoTeste = new ArrayList<Carta>();
+        maoTeste.add(new Carta(8,"10","H"));
+        maoTeste.add(new Carta(9,"Vale","M"));
+        maoTeste.add(new Carta(10,"Data","H"));
+        maoTeste.add(new Carta(11,"Rei","H"));
+        maoTeste.add(new Carta(13,"As","H"));
+        
+        boolean resultado = App.verificaRoyalFlush(maoTeste);
+		Assert.assertFalse("Peso e Nipe errado: ", resultado);            
+    }
 }

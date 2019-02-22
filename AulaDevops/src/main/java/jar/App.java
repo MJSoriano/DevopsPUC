@@ -117,7 +117,7 @@ public class App {
         }
         return false;
     }
-
+  
     // Verifica se ocorreu uma Quadra
     public static Boolean verificaQuadra(List<Carta> mao) {
         List<Integer> pesos = new ArrayList<Integer>();
@@ -126,5 +126,4 @@ public class App {
         }
         return !pesos.stream().filter(i -> Collections.frequency(pesos, i) == 4).collect(Collectors.toSet()).isEmpty();
     }
-
 }

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Hello world!
@@ -115,5 +116,14 @@ public class App {
             return verificaSequenciaENaipe(mao);
         }
         return false;
+    }
+  
+    // Verifica se ocorreu uma Quadra
+    public static Boolean verificaQuadra(List<Carta> mao) {
+        List<Integer> pesos = new ArrayList<Integer>();
+        for (Carta c : mao) {
+            pesos.add(c.getPeso());
+        }
+        return !pesos.stream().filter(i -> Collections.frequency(pesos, i) == 4).collect(Collectors.toSet()).isEmpty();
     }
 }

@@ -81,10 +81,13 @@ public class App {
         System.out.println(verificaRoyalFlush(maoTeste));
 
         System.out.println("--------------------- Verifica Quadra Mao Teste  ---------------------");
-        System.out.println(verificaQuadra(maoTeste)); */
+        System.out.println(verificaQuadra(maoTeste));
 
         System.out.println("--------------------- Verifica Full House Mao Teste  ---------------------");
-        System.out.println(verificaFullHouse(maoTeste));
+        System.out.println(verificaFullHouse(maoTeste)); */
+
+        System.out.println("--------------------- Verifica Flush Mao Teste  ---------------------");
+        System.out.println(verificaFlush(maoTeste));
     }
 
     // Ordena a Mao do jogador pelo Peso da carta
@@ -140,6 +143,15 @@ public class App {
             }
         }
         return false;
+    }
+
+    // Verifica se ocorreu um Flush
+    public static Boolean verificaFlush(List<Carta> mao) {
+        List<String> naipes = new ArrayList<String>();
+        for (Carta c : mao) {
+            naipes.add(c.getNaipe());
+        }
+        return !naipes.stream().filter(i -> Collections.frequency(naipes, i) == 5).collect(Collectors.toSet()).isEmpty();
     }
 
 }

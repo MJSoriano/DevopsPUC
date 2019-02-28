@@ -84,10 +84,13 @@ public class App {
         System.out.println(verificaQuadra(maoTeste));
 
         System.out.println("--------------------- Verifica Full House Mao Teste  ---------------------");
-        System.out.println(verificaFullHouse(maoTeste)); */
+        System.out.println(verificaFullHouse(maoTeste)); 
 
         System.out.println("--------------------- Verifica Flush Mao Teste  ---------------------");
-        System.out.println(verificaFlush(maoTeste));
+        System.out.println(verificaFlush(maoTeste)); */
+
+        System.out.println("--------------------- Verifica Straight Mao Teste  ---------------------");
+        System.out.println(verificaStraight(maoTeste));
     }
 
     // Ordena a Mao do jogador pelo Peso da carta
@@ -154,4 +157,13 @@ public class App {
         return !naipes.stream().filter(i -> Collections.frequency(naipes, i) == 5).collect(Collectors.toSet()).isEmpty();
     }
 
+    // Verifica se ocorreu um Straight
+    public static Boolean verificaStraight(List<Carta> mao) {
+        for (int i = 0; i < mao.size() - 1; i++) {
+            if ((mao.get(i + 1).getPeso() != mao.get(i).getPeso() + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -74,16 +74,20 @@ public class App {
 
         ordenarMao(maoTeste);
 
-        System.out.println("--------------------- Mao Teste ---------------------");
-        for (Carta c : maoTeste) {
-            System.out.println(c);
-        }
-
         /* System.out.println("--------------------- Verifica Straight Flush Mao Teste  ---------------------");
-        System.out.println(verificaStraightFlush(maoTeste)); */
+        System.out.println(verificaStraightFlush(maoTeste));
 
         System.out.println("--------------------- Verifica Royal Flush Mao Teste  ---------------------");
         System.out.println(verificaRoyalFlush(maoTeste));
+
+        System.out.println("--------------------- Verifica Quadra Mao Teste  ---------------------");
+        System.out.println(verificaQuadra(maoTeste));
+
+        System.out.println("--------------------- Verifica Full House Mao Teste  ---------------------");
+        System.out.println(verificaFullHouse(maoTeste)); */
+
+        System.out.println("--------------------- Verifica Flush Mao Teste  ---------------------");
+        System.out.println(verificaFlush(maoTeste));
     }
 
     // Ordena a Mao do jogador pelo Peso da carta
@@ -126,4 +130,28 @@ public class App {
         }
         return !pesos.stream().filter(i -> Collections.frequency(pesos, i) == 4).collect(Collectors.toSet()).isEmpty();
     }
+
+    // Verifica se ocorreu um Full House
+    public static Boolean verificaFullHouse(List<Carta> mao) {
+        List<Integer> pesos = new ArrayList<Integer>();
+        for (Carta c : mao) {
+            pesos.add(c.getPeso());
+        }
+        if (!pesos.stream().filter(i -> Collections.frequency(pesos, i) == 3).collect(Collectors.toSet()).isEmpty()) {
+            if (!pesos.stream().filter(i -> Collections.frequency(pesos, i) == 2).collect(Collectors.toSet()).isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Verifica se ocorreu um Flush
+    public static Boolean verificaFlush(List<Carta> mao) {
+        List<String> naipes = new ArrayList<String>();
+        for (Carta c : mao) {
+            naipes.add(c.getNaipe());
+        }
+        return !naipes.stream().filter(i -> Collections.frequency(naipes, i) == 5).collect(Collectors.toSet()).isEmpty();
+    }
+
 }
